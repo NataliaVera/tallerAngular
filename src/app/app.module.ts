@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DefaultModule } from './UI/layouts/default/default.module';
+import { LoginComponent } from './UI/modules/login/login.component';
+import { FullscreenModule } from './UI/layouts/fullscreen/fullscreen.module';
 
 
 @NgModule({
@@ -14,6 +16,7 @@ import { DefaultModule } from './UI/layouts/default/default.module';
     BrowserModule,
     AppRoutingModule,
     DefaultModule,
+    FullscreenModule
   ],
   providers: [],
   bootstrap: [AppComponent]
