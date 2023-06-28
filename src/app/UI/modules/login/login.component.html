@@ -15,20 +15,22 @@
               <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
   
               <div class="form-outline mb-4">
-                <input type="email" id="form2Example18" class="form-control form-control-lg" />
+                <input type="email" id="form2Example18" class="form-control form-control-lg" formControlName="email"/>
                 <label class="form-label" for="form2Example18">Email address</label>
-                <div *ngIf="c['email'].touched || c['email'].dirty"></div>
-                <div *ngFor="let validation of validationMessages.email">
-                  <label *ngIf="c['email'].hasError(validation.type)">{{validation.message}}</label>
+                <div *ngIf="c['email'].touched || c['email'].dirty">
+                  <div *ngFor="let validation of validationMessages.email">
+                    <label class="text-danger" *ngIf="c['email'].hasError(validation.type)">{{validation.message}}</label>
+                  </div>
                 </div>
               </div>
   
               <div class="form-outline mb-4">
-                <input type="password" id="form2Example28" class="form-control form-control-lg" />
+                <input type="password" id="form2Example28" class="form-control form-control-lg" formControlName="password"/>
                 <label class="form-label" for="form2Example28">Password</label>
-                <div *ngIf="c['password'].touched || c['password'].dirty"></div>
-                <div *ngFor="let validation of validationMessages.password">
-                  <label *ngIf="c['password'].hasError(validation.type)">{{validation.message}}</label>
+                <div *ngIf="c['password'].touched || c['password'].dirty">
+                  <div *ngFor="let validation of validationMessages.password">
+                    <label class="text-danger" *ngIf="c['password'].hasError(validation.type)">{{validation.message}}</label>
+                  </div>
                 </div>
               </div>
   
@@ -37,7 +39,7 @@
               </div>
   
               <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
-              <p>Don't have an account? <a href="#!" class="link-info">Register here</a></p>
+              <p>Don't have an account? <a class="link-info" routerLink="/fullscreen/register">Register here</a></p>
   
             </form>
   

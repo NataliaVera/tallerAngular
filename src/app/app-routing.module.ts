@@ -4,6 +4,7 @@ import { DefaultComponent } from './UI/layouts/default/default.component';
 import { HomeComponent } from './UI/modules/home/home.component';
 import { FullscreenComponent } from './UI/layouts/fullscreen/fullscreen.component';
 import { LoginComponent } from './UI/modules/login/login.component';
+import { RegisterComponent } from './UI/modules/register/register.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
       {
         path:'login',
         component:LoginComponent
+      },
+      {
+        path:'register',
+        component:RegisterComponent
       }
     ]
   }

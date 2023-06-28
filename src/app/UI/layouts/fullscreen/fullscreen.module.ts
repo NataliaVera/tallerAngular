@@ -5,13 +5,15 @@ import { LoginComponent } from '../../modules/login/login.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from '../../modules/register/register.component';
 
 
 //Administrador de todos los componentes o vistas
 @NgModule({
   declarations: [
     FullscreenComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule, 
