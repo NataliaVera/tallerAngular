@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
+import {HttpClient, HttpHeaders} from '@angular/common/http'
 
 @Component({
   selector: 'app-login',
@@ -23,7 +24,7 @@ public validationMessages ={
   ]
 }
 
-constructor(private formBuilder: FormBuilder, private router: Router){}
+constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient){}
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group(
       {//Validaciones
@@ -47,10 +48,27 @@ constructor(private formBuilder: FormBuilder, private router: Router){}
   }
 
   login(){
+    //Consumir un servicio 
+
+    var email = this.loginForm.controls['email'].value;
+    var password = this.loginForm.controls['password'].value;
+
+    this.http.get('https://dummyjson.com/products')
+      .subscribe((data:any) =>{
+        console.log(data);
+      })
+
+      const headers= new HttpHeaders().set('Content-Type', 'application/json')
+
+      this.http.post('https://dummyjson.com/auth/login', {username: 'kminchelle', password: '0lelplR'}, {headers})
+      .subscribe((data:any) =>{
+        console.log(data);
+      })
+
+
     if(this.loginForm.valid){
       //Almacenar informacion en el navegador 
-      var email = this.loginForm.controls['email'].value;
-      var password = this.loginForm.controls['password'].value;
+      
       localStorage.setItem('token', email + password);
 
       this.router.navigate(['/'])

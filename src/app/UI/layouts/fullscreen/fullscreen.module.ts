@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from '../../modules/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 //Administrador de todos los componentes o vistas
@@ -19,7 +20,8 @@ import { RegisterComponent } from '../../modules/register/register.component';
     CommonModule, 
     RouterModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class FullscreenModule { }
