@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,7 @@ public validationMessages ={
   ]
 }
 
-constructor(private formBuilder: FormBuilder){}
+constructor(private formBuilder: FormBuilder, private router: Router){}
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group(
       {//Validaciones
@@ -47,6 +48,13 @@ constructor(private formBuilder: FormBuilder){}
 
   login(){
     if(this.loginForm.valid){
+      //Almacenar informacion en el navegador 
+      var email = this.loginForm.controls['email'].value;
+      var password = this.loginForm.controls['password'].value;
+      localStorage.setItem('token', email + password);
+
+      this.router.navigate(['/'])
+
       alert('Formulario válido')
     }else{
       alert('No es válido')

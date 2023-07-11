@@ -4,13 +4,15 @@ import { DefaultComponent } from './default.component';
 import { HomeComponent } from '../../modules/home/home.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
+import { ContactComponent } from '../../modules/contact/contact.component';
 
 
 
 @NgModule({
   declarations: [
     DefaultComponent,
-    HomeComponent
+    HomeComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,
