@@ -14,7 +14,8 @@ export class Defaultauth implements CanActivate{
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
         var token = localStorage.getItem('token');
 
-        if(token === 'a@a.comPrueba12345+'){
+        ///LLamamos un servicio que nos indique si el toquen que tenemos es valido o ejecutar una clase 
+        if(token){
             return true; 
         }else{
             this.router.navigate(['/fullscreen/login'])

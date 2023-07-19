@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http'
+import { UserUseCase } from 'src/app/domain/models/usecase/user/userUseCase';
+import { User } from 'src/app/domain/models/User/user';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +26,7 @@ public validationMessages ={
   ]
 }
 
-constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient){}
+constructor(private formBuilder: FormBuilder, private router: Router, private _userUseCase: UserUseCase){}
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group(
       {//Validaciones
@@ -53,26 +55,14 @@ constructor(private formBuilder: FormBuilder, private router: Router, private ht
     var email = this.loginForm.controls['email'].value;
     var password = this.loginForm.controls['password'].value;
 
-    this.http.get('https://dummyjson.com/products')
-      .subscribe((data:any) =>{
-        console.log(data);
-      })
-
-      const headers= new HttpHeaders().set('Content-Type', 'application/json')
-
-      this.http.post('https://dummyjson.com/auth/login', {username: 'kminchelle', password: '0lelplR'}, {headers})
-      .subscribe((data:any) =>{
-        console.log(data);
-      })
-
-
     if(this.loginForm.valid){
       //Almacenar informacion en el navegador 
-      
-      localStorage.setItem('token', email + password);
 
-      this.router.navigate(['/'])
-
+      this._userUseCase.login(email, password).subscribe((response:User)=>{
+        localStorage.setItem('token', response.token);
+        this.router.navigate(['/'])
+      })
+    
       alert('Formulario válido')
     }else{
       alert('No es válido')

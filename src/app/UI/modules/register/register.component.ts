@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -31,7 +33,7 @@ public validationMessages = {
 }
 
 
-constructor(private formBuilder: FormBuilder){}
+constructor(private formBuilder: FormBuilder, private router: Router, private http: HttpClient){}
 ngOnInit(): void {
   this.registerForm = this.formBuilder.group(
     {
@@ -73,7 +75,24 @@ checkPasswords(group: FormGroup){
 }
 
 register(){
+
+  var name = this.registerForm.controls['name'].value;
+  var email = this.registerForm.controls['email'].value;
+  var password = this.registerForm.controls['password'].value;
+  var repeatPassword = this.registerForm.controls['repeatPassword'].value;
+
+  const headers= new HttpHeaders().set('Content-Type', 'application/json')
+
+  this.http.post('https://dummyjson.com/users/add', {name: 'Natalia', email: 'a@a.com', password: 'Na520741', repeatPassword: 'Na520741'}, {headers})
+  .subscribe((data: any) =>{
+    console.log(data);
+  })
+
   if(this.registerForm.valid){
+    localStorage.setItem('token', name + email + password + repeatPassword)
+
+    this.router.navigate(['/'])
+
     alert('Formulario válido')
   }else{
     alert('No es válido')
